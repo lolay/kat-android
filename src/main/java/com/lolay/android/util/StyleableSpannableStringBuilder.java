@@ -1,6 +1,6 @@
 /*
  * Created by Lolay, Inc.
- * Copyright 2011 MyLife, Inc. All rights reserved.
+ * Copyright 2011 Lolay, Inc. All rights reserved.
  */
 package com.lolay.android.util;
 
@@ -12,8 +12,6 @@ import android.text.style.CharacterStyle;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TextAppearanceSpan;
-
-import java.util.zip.CheckedInputStream;
 
 /**
  * Adapted from http://www.androidengineer.com/2010/08/easy-method-for-formatting-android.html.
