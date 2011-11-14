@@ -6,6 +6,8 @@ package com.lolay.android.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +18,15 @@ import android.content.Context;
 import android.util.Log;
 import android.util.Pair;
 
-public class LolayPair<F, S> extends Pair<F, S> implements Serializable {
+public class LolayPair<F, S> implements Serializable {
 	private static final String TAG = LolayPair.class.getSimpleName();
 	private static final long serialVersionUID = 1L;
-
+	public F first;
+	public S second;
+	
 	public LolayPair(F first, S second) {
-		super(first, second);
+		this.first = first;
+		this.second = second;
 	}
 	
 	public static List<LolayPair<String,String>> loadStream(InputStream stream) {

@@ -9,10 +9,10 @@ package com.lolay.android.util;
  * This class is intended to be used with {@link android.widget.Spinner} where {@code Pair.second} will be
  * used for spinner display value, and {@code Pair.first} will be used as the actual value to be saved.
  */
-public class SpinnerPair extends LolayPair<Object, String>{
+public class SpinnerPair<F> extends LolayPair<F, String>{
 	private static final long serialVersionUID = 1L;
 
-	public SpinnerPair(Object first, String second) {
+	public SpinnerPair(F first, String second) {
         super(first, second);
     }
 
