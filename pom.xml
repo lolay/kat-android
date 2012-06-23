@@ -61,7 +61,7 @@
 		<dependency>
 			<groupId>com.lolay.android</groupId>
 			<artifactId>lolay-investigo</artifactId>
-			<version>5</version>
+			<version>7</version>
 		</dependency>
 		<dependency>
 			<groupId>com.lolay.android</groupId>
