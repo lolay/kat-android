@@ -24,6 +24,7 @@
     <orderEntry type="module" module-name="LolayStrands" exported="" />
     <orderEntry type="module" module-name="LolayInvestigo" exported="" />
     <orderEntry type="library" exported="" name="commons-lang-2.6" level="project" />
+    <orderEntry type="library" name="support-v4-18.0.0" level="project" />
   </component>
 </module>
 

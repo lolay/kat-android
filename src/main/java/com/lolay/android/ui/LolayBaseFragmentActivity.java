@@ -1,0 +1,155 @@
+/*
+ * Created by Lolay, Inc.
+ * Copyright 2013 Lolay, Inc. All rights reserved.
+ */
+package com.lolay.android.ui;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import com.lolay.android.log.LolayLog;
+import com.lolay.android.task.LolayTaskManager;
+
+import java.net.URI;
+
+public class LolayBaseFragmentActivity extends FragmentActivity {
+	private static final String TAG = LolayLog.buildTag(LolayBaseActivity.class);
+
+	public LolayBaseApplication getLolayApplication() {
+		return (LolayBaseApplication) getApplicationContext();
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		LolayLog.v(TAG, String.format("%s.onCreate", this.getClass().getSimpleName()), "enter");
+		super.onCreate(savedInstanceState);
+	}
+
+	@Override
+	protected void onRestart() {
+		LolayLog.v(TAG, String.format("%s.onRestart", this.getClass().getSimpleName()), "enter");
+		super.onRestart();
+	}
+
+	@Override
+	protected void onStart() {
+		LolayLog.v(TAG, String.format("%s.onStart", this.getClass().getSimpleName()), "enter");
+		super.onStart();
+	}
+
+	@Override
+	protected void onResume() {
+		LolayLog.v(TAG, String.format("%s.onResume", this.getClass().getSimpleName()), "enter");
+		super.onResume();
+	}
+
+	@Override
+	protected void onStop() {
+		LolayLog.v(TAG, String.format("%s.onStop", this.getClass().getSimpleName()), "enter");
+		super.onStop();
+	}
+
+	@Override
+	protected void onPause() {
+		LolayLog.v(TAG, String.format("%s.onPause", this.getClass().getSimpleName()), "enter");
+		super.onPause();
+	}
+
+	@Override
+	protected void onDestroy() {
+		LolayLog.v(TAG, String.format("%s.onDestroy", this.getClass().getSimpleName()), "enter");
+		super.onDestroy();
+		cancelTasks();
+	}
+
+	public <Params,Progress,Result> void addTaskAndExecute(AsyncTask<Params,Progress,Result> task, Params... params) {
+		LolayTaskManager taskManager = getLolayApplication().getTaskManager();
+		if (taskManager != null) {
+			taskManager.addTaskAndExecute(this, task, params);
+		}
+	}
+
+	public void cancelTasks() {
+		LolayTaskManager taskManager = getLolayApplication().getTaskManager();
+		if (taskManager != null) {
+			taskManager.cancelTasks(this);
+		}
+	}
+
+	/**
+	 * Thanks to http://nex-otaku-en.blogspot.com/2010/12/android-put-listview-in-scrollview.html
+	 * WARNING: Only works with Linear Layouts or you'll get a NullPointerException in the measure code
+	 */
+	public void listViewSetHeightFromChildren(ListView listView) {
+		ListAdapter listAdapter = listView.getAdapter();
+		if (listAdapter == null) {
+			// pre-condition
+			return;
+		}
+
+		int totalHeight = 0;
+		int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST);
+		for (int i = 0; i < listAdapter.getCount(); i++) {
+			View listItem = listAdapter.getView(i, null, listView);
+			listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+			totalHeight += listItem.getMeasuredHeight();
+		}
+
+		ViewGroup.LayoutParams params = listView.getLayoutParams();
+		params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+		listView.setLayoutParams(params);
+		listView.requestLayout();
+	}
+
+	public void viewSetVisibility(int id, int visibility) {
+		View view = findViewById(id);
+		if (view != null) {
+			view.setVisibility(visibility);
+		}
+	}
+
+	public Intent youTubeIntent(Uri url, String title) {
+		Intent intent = new Intent(Intent.ACTION_VIEW, url);
+		return Intent.createChooser(intent, title);
+	}
+
+	public Intent youTubeIntent(URI url, String title) {
+		Uri uri = Uri.parse(url.toASCIIString());
+		return youTubeIntent(uri, title);
+	}
+
+	public Intent youTubeIntent(URI url) {
+		return youTubeIntent(url, "View on YouTube");
+	}
+
+	public Intent youTubeIntent(Uri url) {
+		return youTubeIntent(url, "View on YouTube");
+	}
+
+	public Intent youTubeIntent(URI url, int titleId) {
+		String title = getResources().getString(titleId);
+		if (title != null) {
+			return youTubeIntent(url, title);
+		} else {
+			LolayLog.w(TAG, "youTubeIntent", "Could not find titleId=%s", titleId);
+			return youTubeIntent(url);
+		}
+	}
+
+	public Intent youTubeIntent(Uri url, int titleId) {
+		String title = getResources().getString(titleId);
+		if (title != null) {
+			return youTubeIntent(url, title);
+		} else {
+			LolayLog.w(TAG, "youTubeIntent", "Could not find titleId=%s", titleId);
+			return youTubeIntent(url);
+		}
+	}
+}
