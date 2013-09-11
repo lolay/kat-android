@@ -5,6 +5,8 @@ buildscript {
 }
 
 apply plugin: 'java'
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
 
 repositories {
     mavenCentral()
@@ -25,7 +27,7 @@ sourceSets {
 
 dependencies {
 	provided 'com.google.android:android:2.2.1'
-	provided 'com.android.support:support-v4:18.0.0'
+	compile 'com.android.support:support-v4:18.0.0'
 	compile 'commons-lang:commons-lang:2.6'
 	provided 'org.codehaus.jackson:jackson-core-asl:1.8.5'
 	compile project(':LolayLogJam')
