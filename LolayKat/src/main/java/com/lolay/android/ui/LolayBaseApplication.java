@@ -21,8 +21,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import com.lolay.android.error.LolayErrorManager;
 import com.lolay.android.log.LolayLog;
-import com.lolay.android.progress.LolayProgressManager;
-import com.lolay.android.task.LolayTaskManager;
+import com.lolay.android.strands.progress.LolayProgressManager;
+import com.lolay.android.strands.task.LolayTaskManager;
+import com.lolay.android.tracker.LolayAnalyticsTracker;
 import com.lolay.android.tracker.LolayLogTracker;
 import com.lolay.android.tracker.LolayTracker;
 
@@ -34,6 +35,8 @@ import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+
 
 public abstract class LolayBaseApplication extends Application {
 	private static String TAG = LolayLog.buildTag(LolayBaseApplication.class);
@@ -116,6 +119,7 @@ public abstract class LolayBaseApplication extends Application {
 	}
 	
 	protected LolayTracker buildTracker() {
+
 		return new LolayLogTracker();
 	}
 	

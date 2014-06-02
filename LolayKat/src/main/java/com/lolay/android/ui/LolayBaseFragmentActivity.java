@@ -26,7 +26,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.lolay.android.log.LolayLog;
-import com.lolay.android.task.LolayTaskManager;
+import com.lolay.android.strands.task.LolayTaskManager;
 
 import java.net.URI;
 

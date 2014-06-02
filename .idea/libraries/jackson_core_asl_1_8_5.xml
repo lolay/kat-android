@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="jackson-core-asl-1.8.5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-core-asl/1.8.5/713a5564acb9a5467521bbb53221ab8e1fe65039/jackson-core-asl-1.8.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.jackson/jackson-core-asl/1.8.5/4161f28a79dcc9c3c2ca9dac1ebbb583395bc630/jackson-core-asl-1.8.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

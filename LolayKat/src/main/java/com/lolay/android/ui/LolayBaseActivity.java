@@ -18,7 +18,7 @@ package com.lolay.android.ui;
 import java.net.URI;
 
 import com.lolay.android.log.LolayLog;
-import com.lolay.android.task.LolayTaskManager;
+import com.lolay.android.strands.task.LolayTaskManager;
 
 import android.app.Activity;
 import android.content.Intent;
