@@ -1,6 +1,13 @@
 apply plugin: 'android-library'
 apply plugin: 'maven-publish'
 
+if (project.hasProperty('isSnapshot')) 
+{
+	mavenSnapshot = project.property('isSnapshot')
+}
+
+def snapshotString = (Integer.parseInt(mavenSnapshot)==1) ? '-SNAPSHOT' : ""
+
 repositories {
     mavenLocal()
 	mavenCentral()
@@ -27,10 +34,10 @@ dependencies {
     compile 'com.android.support:appcompat-v7:19.+'
 	compile 'commons-lang:commons-lang:2.6'
 	compile 'org.codehaus.jackson:jackson-core-asl:1.8.5'
-	compile 'com.lolay.android:lolay-logjam:2@aar'
-	compile 'com.lolay.android:lolay-investigo:10@aar'
-	compile 'com.lolay.android:lolay-erred:2@aar'
-	compile 'com.lolay.android:lolay-strands:2@aar'
+	compile 'com.lolay.android:lolay-logjam:2' + snapshotString + '@aar'
+	compile 'com.lolay.android:lolay-investigo:10' + snapshotString + '@aar'
+	compile 'com.lolay.android:lolay-erred:2' + snapshotString + '@aar'
+	compile 'com.lolay.android:lolay-strands:2' + snapshotString + '@aar'
 }
 
 task printMavenDir{
@@ -43,7 +50,7 @@ publishing {
             groupId mavenLolayGroupId
             artifactId mavenLolayArtifactId
             
-			version android.defaultConfig.versionName + (Integer.parseInt(mavenSnapshot) == 0 ? '' : '-SNAPSHOT')
+			version android.defaultConfig.versionName + snapshotString
 
             File buildFile = new File("$buildDir/libs")
             if (buildFile.isDirectory()) {
